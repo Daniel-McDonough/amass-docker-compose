@@ -107,7 +107,7 @@ services:
       - source: loki_config
         target: /etc/loki/local-config.yaml
     volumes:
-      - ./logs:/loki:rw
+      - loki_logs:/loki:rw
     expose:
       - "3100/tcp"
     deploy:
@@ -179,6 +179,8 @@ networks:
   amass:
     driver: bridge
     name: amass-net
+volumes:
+  loki_logs:
 
 configs:
   syslog_config:
