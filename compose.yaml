@@ -101,13 +101,14 @@ services:
   loki:
     image: grafana/loki:latest
     container_name: loki
+    user: "1000:1000"
     networks:
       - amass
     configs:
       - source: loki_config
         target: /etc/loki/local-config.yaml
     volumes:
-      - loki_logs:/loki:rw
+      - ./logs:/loki:rw
     expose:
       - "3100/tcp"
     deploy:
